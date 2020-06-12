@@ -8,6 +8,6 @@ namespace ZooCalculationBussinesLogic.Interfaces
 {
    public interface IRouteLogic
     {
-        List<CourseViewModel> Read(CourseBindingModel model);   
+        List<RouteViewModel> Read(RouteBindingModel model);   
     }
 }

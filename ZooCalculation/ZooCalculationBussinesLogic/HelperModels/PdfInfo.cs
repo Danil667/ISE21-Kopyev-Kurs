@@ -10,6 +10,6 @@ namespace ZooCalculationBussinesLogic.HelperModels
         public string FileName { get; set; }
         public string Title { get; set; }
         public List<ExcursionViewModel> Excursions { get; set; }
-        public Dictionary<int, List<OrderViewModel>> Pays { get; set; }
+        public Dictionary<int, List<OrderViewModel>> Orders { get; set; }
     }
 }

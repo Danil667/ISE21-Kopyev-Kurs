@@ -28,12 +28,15 @@ namespace ZooCalculationBussinesLogic.ViewModels
 		[DisplayName("Назване экскурсии")]
 		public string Name_Excursion { set; get; }
 		[DataMember]
+		[DisplayName("сумма")]
+		public decimal Cost { get; set; }
+		[DataMember]
 		[DisplayName("Оплаченная сумма")]
 		public decimal PaidSum { get; set; }
 		[DataMember]
 		[DisplayName("Оcтаток")]
 		public decimal Remain { get; set; }
 		[DataMember]
-		public List<RouteForExcursionBindingModel> RouteForExcursions { get; set; }
+		public List<RouteForExcursionViewModel> RouteForExcursions { get; set; }
 	}
 }

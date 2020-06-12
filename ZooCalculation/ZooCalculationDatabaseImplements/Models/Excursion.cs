@@ -18,7 +18,7 @@ namespace ZooCalculationDatabaseImplements.Models
 		[Required]
 		public int PaidSum { get; set; }
 		[Required]
-		public int Final_Cost { set; get; }
+		public decimal Final_Cost { set; get; }
 		[ForeignKey("ExcursionId")]
 		public virtual List<RouteForExcursion> RouteForExcursions { get; set; }
 		[Required]

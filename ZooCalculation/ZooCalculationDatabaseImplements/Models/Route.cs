@@ -12,6 +12,8 @@ namespace ZooCalculationDatabaseImplements.Models
 		[Required]
 		public string RouteName { set; get; }
 		[Required]
+		public DateTime StartRoute { set; get; }
+		[Required]
 		public int Cost { set; get; }
 		[ForeignKey("ExcursionId")]
 		public virtual List<RouteForExcursion> RouteForExcursion { set; get; }

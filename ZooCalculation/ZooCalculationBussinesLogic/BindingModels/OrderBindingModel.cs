@@ -9,7 +9,7 @@ namespace ZooCalculationBussinesLogic.BindingModels
 	public class OrderBindingModel
 	{
 		[DataMember]
-		public int Id { get; set; }
+		public int? Id { get; set; }
 		[DataMember]
 		public int ClientId { get; set; }
 		[DataMember]

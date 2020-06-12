@@ -13,6 +13,8 @@ namespace ZooCalculationBussinesLogic.BindingModels
 		[DataMember]
 		public string RouteName { set; get; }
 		[DataMember]
+		public DateTime StartRoute { set; get; }
+		[DataMember]
 		public int Cost { set; get; }
 	}
 }

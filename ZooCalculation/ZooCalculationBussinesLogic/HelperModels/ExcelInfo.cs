@@ -9,6 +9,6 @@ namespace ZooCalculationBussinesLogic.HelperModels
     {
         public string FileName { get; set; }
         public string Title { get; set; }
-        public List<CourseViewModel> Courses { get; set; }
+        public List<RouteViewModel> Routes { get; set; }
     }
 }

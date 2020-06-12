@@ -7,7 +7,7 @@ using System.Text;
 namespace ZooCalculationBussinesLogic.ViewModels
 {
 	[DataContract]
-	class RouteForExcursionViewModel
+	public class RouteForExcursionViewModel
 	{
 		[DataMember]
 		public int Id { get; set; }
@@ -16,7 +16,14 @@ namespace ZooCalculationBussinesLogic.ViewModels
 		[DataMember]
 		public int RouteId { get; set; }
 		[DataMember]
+		public string RouteName { get; set; }
+		[DataMember]
+		public DateTime StartRoute { get; set; }
+		[DataMember]
 		[DisplayName("Количество")]
 		public int Count { get; set; }
+		[DataMember]
+		[DisplayName("Цена")]
+		public int Cost { get; set; }
 	}
 }

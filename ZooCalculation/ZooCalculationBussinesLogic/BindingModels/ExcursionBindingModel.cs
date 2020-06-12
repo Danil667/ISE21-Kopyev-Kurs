@@ -25,5 +25,6 @@ namespace ZooCalculationBussinesLogic.BindingModels
 		public decimal Remain { get; set; }
 		[DataMember]
 		public List<RouteForExcursionBindingModel> RouteForExcursions { get; set; }
+		public decimal Final_Cost { get; set; }
 	}
 }
