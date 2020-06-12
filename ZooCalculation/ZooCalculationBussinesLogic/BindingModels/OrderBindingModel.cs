@@ -11,11 +11,11 @@ namespace ZooCalculationBussinesLogic.BindingModels
 		[DataMember]
 		public int? Id { get; set; }
 		[DataMember]
-		public int ClientId { get; set; }
+		public int? ClientId { get; set; }
 		[DataMember]
 		public int ExcursionId { get; set; }
 		[DataMember]
-		public int Sum { get; set; }
+		public decimal Sum { get; set; }
 		[DataMember]
 		public DateTime DateCreate { get; set; }
 	}

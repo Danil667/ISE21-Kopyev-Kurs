@@ -10,7 +10,7 @@ namespace ZooCalculationDatabaseImplements
 		{
 			if (optionsBuilder.IsConfigured == false)
 			{
-				optionsBuilder.UseSqlServer(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=UniversityDatabase;Integrated Security=True;MultipleActiveResultSets=True;");
+				optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-8MB9FIAG\SQLEXPRESS;Initial Catalog=ZooCalculationDatabaseImplements;Integrated Security=True;MultipleActiveResultSets=True;");
 			}
 			base.OnConfiguring(optionsBuilder);
 		}

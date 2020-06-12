@@ -10,7 +10,7 @@ namespace ZooCalculationDatabaseImplements.Models
 	public class Excursion
 	{
 		public int Id { set; get; }
-		public int ClientId { get; set; }
+		public int? ClientId { get; set; }
 		[Required]
 		public DateTime ExcursionCreate { get; set; }
 		public ExcursionStatus Status { get; set; }

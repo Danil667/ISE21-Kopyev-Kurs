@@ -89,7 +89,7 @@ namespace ZooCalculationBussinesLogic.BusinessLogic
             m.Subject = subject;
             m.Attachments.Add(new Attachment(fileName));
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            smtp.Credentials = new NetworkCredential("kopev2000@mail.ru", "687863dan");
+            smtp.Credentials = new NetworkCredential("kopev2000@mail.ru", "687863dAn");
             smtp.EnableSsl = true;
             smtp.Send(m);
         }

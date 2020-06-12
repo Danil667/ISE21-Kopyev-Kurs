@@ -14,7 +14,7 @@ namespace ZooCalculationBussinesLogic.ViewModels
 		[DataMember]
 		public int Id { set; get; }
 		[DataMember]
-		public int ClientId { get; set; }
+		public int? ClientId { get; set; }
 		[DataMember]
 		[DisplayName("Клиент")]
 		public string ClientFIO { get; set; }

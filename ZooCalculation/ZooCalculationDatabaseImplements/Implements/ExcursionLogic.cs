@@ -5,10 +5,9 @@ using System.Linq;
 using ZooCalculationBussinesLogic.BindingModels;
 using ZooCalculationBussinesLogic.Interfaces;
 using ZooCalculationBussinesLogic.ViewModels;
-using ZooCalculationDatabaseImplements;
 using ZooCalculationDatabaseImplements.Models;
 
-namespace UniversityDataBaseImplement.Implements
+namespace ZooCalculationDatabaseImplements.Implements
 {
     public class ExcursionLogic : IExcursionLogic
     {
