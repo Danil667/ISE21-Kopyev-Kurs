@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ZooCalculationWebClient.Models
 {
-    public class Route
+    public class RouteModel
     {
         public string RouteName { get; set; }
         public DateTime StartRoute { get; set; }      

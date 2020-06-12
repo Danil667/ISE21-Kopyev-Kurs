@@ -6,7 +6,7 @@ using ZooCalculationBussinesLogic.Enums;
 
 namespace ZooCalculationWebClient.Models
 {
-    public class Excursion
+    public class ExcursionModel
     {
 		public int Id { set; get; }
 		public int ClientId { get; set; }
@@ -15,6 +15,6 @@ namespace ZooCalculationWebClient.Models
 		public string Name_Excursion { set; get; }
 		public int PaidSum { get; set; }
 		public decimal Final_Cost { set; get; }
-        public List<Route> RouteForExcursions { get; set; }
+        public List<RouteModel> RouteForExcursions { get; set; }
     }
 }

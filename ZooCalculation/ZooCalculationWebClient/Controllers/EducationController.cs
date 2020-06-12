@@ -70,7 +70,7 @@ namespace ZooCalculationWebClient.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CreateTravel(CreateExcursion model)
+        public ActionResult CreateExcursion(CreateExcursion model)
         {
             if (!ModelState.IsValid)
             {
@@ -133,7 +133,7 @@ namespace ZooCalculationWebClient.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Orderment(Order model)
+        public ActionResult Order(OrderModel model)
         {
             ExcursionViewModel excursion = edLogic.Read(new ExcursionBindingModel
             {

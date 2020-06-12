@@ -52,7 +52,7 @@ namespace ZooCalculationWebClient.Controllers
             return View();
         }
         [HttpPost]
-        public ViewResult Registration(Registration user)
+        public ViewResult Registration(RegistrationModel user)
         {
             if (ModelState.IsValid)
             {

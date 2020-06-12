@@ -1,17 +1,21 @@
-﻿@model ZooCalculationWebClient.Models.Registration
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model ZooCalculationWebClient.Models.RegistrationModel
+
 @{
     ViewData["Title"] = "Регистрация";
 }
-<h1>@ViewData["Title"]</h1>
-@using (Html.BeginForm("Registration", "Client"))
+<div class="text-left text-info">
+    <h1>@ViewData["Title"]</h1>
+</div>
+@using (Html.BeginForm("Client"))
 {
-    <p>Логин: @Html.TextBoxFor(x => x.Login)</p>
-    <p>E-Mail: @Html.TextBoxFor(x => x.Email)</p>
-    <p>Пароль: @Html.TextBoxFor(x => x.Password)</p>
-    <p>ФИО: @Html.TextBoxFor(x => x.ClientFIO)</p>
-    @Html.ValidationSummary()
-    <input type="submit" value="Зарегистрироваться" />
+    <p>
+        Логин:<br>
+        @Html.TextBoxFor(x => x.Login)<br>
+        Пароль:<br>
+        @Html.TextBoxFor(x => x.Password)<br>
+        ФИО:<br>
+        @Html.TextBoxFor(x => x.ClientFIO)
+    </p>
+    @Html.ValidationSummary(true, "", new { @style = "color: red" })
+    <input type="submit" value="Зарегистрироваться" class="btn btn-info btn-sm" />
 }
