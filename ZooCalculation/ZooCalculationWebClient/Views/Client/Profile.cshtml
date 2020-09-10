@@ -1,13 +1,10 @@
-﻿@{
-    ViewData["Title"] = "Личный кабинет";
-}
+﻿@{ ViewData["Title"] = "Личный кабинет"; }
 <div class="text-center text-info">
     <h1>@ViewData["Title"]</h1>
 </div>
 
 <p>
-    Имя: @ViewBag.User.ClientFIO<br>
-    Логин: @ViewBag.User.Login<br>
-    Почта: @ViewBag.User.Login<br>
-    Пароль: @ViewBag.User.Password
+    <b>Имя</b>: @ViewBag.User.ClientFIO<br>
+    <b>Логин</b>: @ViewBag.User.Login<br>
+    <b>Пароль</b>: @ViewBag.User.Password
 </p>

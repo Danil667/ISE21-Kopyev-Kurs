@@ -86,7 +86,8 @@ namespace ZooCalculationWebClient.Controllers
                 {
                     edRoutes.Add(new RouteForExcursionBindingModel
                     {
-                        RouteId = course.Key
+                        RouteId = course.Key,
+						Count = course.Value
                     });
                 }
             }
@@ -199,7 +200,7 @@ namespace ZooCalculationWebClient.Controllers
             var excursion = edLogic.Read(new ExcursionBindingModel { Id = id }).FirstOrDefault();
             string fileName = "D:\\temp\\" + excursion.Id + ".xlsx";
             reportLogic.SaveRouteForExcursionsToExcelFile(fileName, excursion, Program.Client.Login);
-            return RedirectToAction("Educayion");
+            return RedirectToAction("Excursion");
         }
     }
 }

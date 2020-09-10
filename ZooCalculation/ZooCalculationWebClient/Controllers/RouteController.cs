@@ -10,14 +10,14 @@ namespace ZooCalculationWebClient.Controllers
 {
     public class RouteController : Controller
     {
-        private readonly IRouteLogic course;
-        public RouteController(RouteLogic course)
+        private readonly IRouteLogic routes;
+        public RouteController(IRouteLogic routes)
         {
-           this.course = course;
+           this.routes = routes;
         }
         public IActionResult Route()
         {
-            ViewBag.Routes = course.Read(null);
+            ViewBag.Routes = routes.Read(null);
             return View();
         }
     }

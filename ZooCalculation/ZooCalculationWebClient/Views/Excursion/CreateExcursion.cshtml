@@ -1,8 +1,9 @@
-﻿@model ZooCalculationWebClient.Models.CreateExcursionModel
+﻿@model ZooCalculationWebClient.Models.CreateExcursion
 
 @{
     ViewData["Title"] = "Создать экскурсию";
 }
+
 <div class="text-center text-info">
     <h1>@ViewData["Title"]</h1>
 </div>
@@ -10,21 +11,22 @@
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true, "", new { @style = "color: red" })
-    <p>Состав:</p>
+    <p>Мой курс обучения:</p>
     <table class="table">
         <tr>
-            <td>Маршрут</td>
-            <td>Начало</td>
+            <td><justify>Маршрут</justify></td>
+            <td>Дата начала маршрута</td>
             <td>Цена</td>
         </tr>
-        @foreach (ZooCalculationBussinesLogic.ViewModels.RouteViewModel tour in ViewBag.RouteForExcursion)
+        @foreach (ZooCalculationBussinesLogic.ViewModels.RouteViewModel course in ViewBag.RouteForExcursions)
         {
-            <tr>
-                <td>@tour.RouteName</td>
-                <td>@tour.StartRoute</td>
-                <td><input type="number" name="Model.RouteForExcursions[@tour.Id]" value="0" min="0" /></td>
-                <td>@tour.Cost</td>
-            </tr>
+    <tr>
+        <td><justify>@course.RouteName</justify></td>
+        <td>@course.StartRoute</td>
+        <td><input type="number" name="Model.RouteForExcursions[@course.Id]" value="0" min="0" /></td>
+        <td>@course.Cost</td>
+        <td><input type="checkbox" name="Model.RouteForExcursion[@course.Id]" value="0" /></td>
+    </tr>
         }
     </table>
     <button type="submit" class="btn btn-info btn-sm">Создать</button>

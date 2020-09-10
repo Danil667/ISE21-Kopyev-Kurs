@@ -10,11 +10,11 @@
         <td>Маршрут</td>
         <td>Цена</td>
     </tr>
-    @foreach (var tour in ViewBag.tours)
+    @foreach (var route in ViewBag.routes)
     {
         <tr>
-            <td>@tour.RouteName</td>
-            <td>@tour.Cost</td>
+            <td>@route.RouteName</td>
+            <td>@route.Cost</td>
         </tr>
     }
 </table>

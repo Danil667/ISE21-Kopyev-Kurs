@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZooCalculationBussinesLogic", "ZooCalculationBussinesLogic\ZooCalculationBussinesLogic.csproj", "{D7E6C73D-73E3-4287-B292-0C12FCE04929}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZooCalculationBussinesLogic", "ZooCalculationBussinesLogic\ZooCalculationBussinesLogic.csproj", "{D7E6C73D-73E3-4287-B292-0C12FCE04929}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZooCalculationDatabaseImplements", "ZooCalculationDatabaseImplements\ZooCalculationDatabaseImplements.csproj", "{B0E71758-C0D4-4B85-BA25-4891D34F437F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZooCalculationDatabaseImplements", "ZooCalculationDatabaseImplements\ZooCalculationDatabaseImplements.csproj", "{B0E71758-C0D4-4B85-BA25-4891D34F437F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZooCalculationWebClient", "ZooCalculationWebClient\ZooCalculationWebClient.csproj", "{882043B2-536E-4B4A-B0D8-374C85FDDD0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZooCalculationWebClient", "ZooCalculationWebClient\ZooCalculationWebClient.csproj", "{882043B2-536E-4B4A-B0D8-374C85FDDD0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

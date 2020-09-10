@@ -1,20 +1,41 @@
-﻿@model ZooCalculationWebClient.Models.LoginModel
+﻿@model ZooCalculationWebClient.Models.SignIn
 
 @{
     ViewData["Title"] = "Авторизация";
 }
-<div class="text-left text-info">
-    <h1>@ViewData["Title"]</h1>
-</div>
+<head>
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="form-container">
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <h2>Логин</h2>
+            <label asp-for="Login" class="control-label">
+                <input asp-for="Login" class="login" required>
+                <span class="icon">
+                    <i class="fa fa-user"></i>
+                </span>
+                <span class="label">
+                    <b> Логин(EMail)</b>
+                </span>
+            </label><br />
+            <label asp-for="Password" class="control-label">
+                <input asp-for="Password" class="password" required>
+                <span class="icon">
+                    <i class="fa fa-lock"></i>
+                </span>
+                <span class="label">
+                    <b> Пароль</b>
+                </span>
+            </label><br />
+            <button type="submit" class="sign-in">Вход</button>
+        </form>
+    </div>
+</body>
 
-@using (Html.BeginForm())
-{
-    @Html.ValidationSummary(true, "", new { @style = "color: red" })
-    <p>
-        Логин:<br>
-        @Html.EditorFor(x => x.Login)<br>
-        Пароль:<br>
-        @Html.EditorFor(x => x.Password)
-    </p>
-    <button class="btn btn-info btn-sm" type="submit">Войти</button>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
