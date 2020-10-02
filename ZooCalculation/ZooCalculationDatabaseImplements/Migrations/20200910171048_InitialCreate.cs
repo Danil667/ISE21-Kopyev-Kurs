@@ -96,7 +96,7 @@ namespace ZooCalculationDatabaseImplements.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ExcursionId = table.Column<int>(nullable: false),
+                    ExcursionId = table.Column<int>(nullable: true),
                     RouteId = table.Column<int>(nullable: false),
                     Count = table.Column<int>(nullable: false)
                 },
@@ -108,13 +108,13 @@ namespace ZooCalculationDatabaseImplements.Migrations
                         column: x => x.ExcursionId,
                         principalTable: "Excursions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_RouteForExcursions_Routes_ExcursionId",
                         column: x => x.ExcursionId,
                         principalTable: "Routes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

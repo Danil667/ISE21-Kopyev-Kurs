@@ -5,16 +5,20 @@
 <div class="text-center text-info">
     <h1>Маршруты</h1>
 </div>
-<table class="table">
-    <tr>
-        <td>Маршрут</td>
-        <td>Цена</td>
-    </tr>
-    @foreach (var route in ViewBag.routes)
-    {
+<table class="table table-borderless">
+    <thead class="thead-dark">
         <tr>
-            <td>@route.RouteName</td>
-            <td>@route.Cost</td>
+            <th>Маршрут</th>
+            <th>Цена</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var route in ViewBag.routes)
+        {
+            <tr>
+                <td>@route.RouteName</td>
+                <td>@route.Cost</td>
+            </tr>
+        }
+    </tbody>
 </table>

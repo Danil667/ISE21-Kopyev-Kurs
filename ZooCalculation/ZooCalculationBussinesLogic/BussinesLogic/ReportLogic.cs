@@ -83,13 +83,13 @@ namespace ZooCalculationBussinesLogic.BusinessLogic
         }
         public void SendMail(string email, string fileName, string subject)
         {
-            MailAddress from = new MailAddress("kopev2000@mail.ru", "Зоопарк»");
+            MailAddress from = new MailAddress("labwork15kafis@gmail.com", "Зоопарк»");
             MailAddress to = new MailAddress(email);
             MailMessage m = new MailMessage(from, to);
             m.Subject = subject;
             m.Attachments.Add(new Attachment(fileName));
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            smtp.Credentials = new NetworkCredential("kopev2000@mail.ru", "687863dAn");
+            smtp.Credentials = new NetworkCredential("labwork15kafis@gmail.com", "passlab15");
             smtp.EnableSsl = true;
             smtp.Send(m);
         }

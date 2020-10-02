@@ -10,14 +10,14 @@ using ZooCalculationDatabaseImplements;
 namespace ZooCalculationDatabaseImplements.Migrations
 {
     [DbContext(typeof(ZooCalculationDatabase))]
-    [Migration("20200612040113_InitialCreate")]
+    [Migration("20200910171048_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.5")
+                .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -141,7 +141,6 @@ namespace ZooCalculationDatabaseImplements.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("ExcursionId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("RouteId")
@@ -178,15 +177,11 @@ namespace ZooCalculationDatabaseImplements.Migrations
                 {
                     b.HasOne("ZooCalculationDatabaseImplements.Models.Excursion", "Excursions")
                         .WithMany("RouteForExcursions")
-                        .HasForeignKey("ExcursionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ExcursionId");
 
                     b.HasOne("ZooCalculationDatabaseImplements.Models.Route", "Routes")
                         .WithMany("RouteForExcursion")
-                        .HasForeignKey("ExcursionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ExcursionId");
                 });
 #pragma warning restore 612, 618
         }

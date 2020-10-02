@@ -2,9 +2,19 @@
 <div class="text-center text-info">
     <h1>@ViewData["Title"]</h1>
 </div>
-
-<p>
-    <b>Имя</b>: @ViewBag.User.ClientFIO<br>
-    <b>Логин</b>: @ViewBag.User.Login<br>
-    <b>Пароль</b>: @ViewBag.User.Password
-</p>
+<table class="table table-borderless">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Имя</th>
+            <th scope="col">Логин</th>
+            <th scope="col">Пароль</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@ViewBag.User.ClientFIO</td>
+            <td>@ViewBag.User.Login</td>
+            <td>@ViewBag.User.Password</td>
+        </tr>
+    </tbody>
+</table>

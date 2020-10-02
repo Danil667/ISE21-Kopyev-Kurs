@@ -52,8 +52,8 @@ namespace ZooCalculationWebClient.Controllers
                         payList.Add(pay);
                 }
             }
-            ViewBag.Orders = payList;
-            ViewBag.Excursions = excursions;
+            ViewBag.Order = payList;
+            ViewBag.Excursion = excursions;
             string fileName = "D:\\temp\\PdfReport.pdf";
             if (model.SendMail)
             {
@@ -87,7 +87,7 @@ namespace ZooCalculationWebClient.Controllers
                     edRoutes.Add(new RouteForExcursionBindingModel
                     {
                         RouteId = course.Key,
-						Count = course.Value
+						Cost = course.Value
                     });
                 }
             }
@@ -140,7 +140,7 @@ namespace ZooCalculationWebClient.Controllers
             {
                 Id = model.ExcursionId
             }).FirstOrDefault();
-           decimal Remain = CalculateRemain(excursion);
+            decimal Remain = CalculateRemain(excursion);
             if (!ModelState.IsValid)
             {
                 ViewBag.Excursion = excursion;
@@ -173,6 +173,8 @@ namespace ZooCalculationWebClient.Controllers
                     Id = rec.Id,
                     ExcursionId = rec.ExcursionId,
                     RouteId = rec.RouteId,
+                    Count = rec.Count,
+                    Cost = rec.Cost
                 }).ToList()
             });
             return RedirectToAction("Excursion");
