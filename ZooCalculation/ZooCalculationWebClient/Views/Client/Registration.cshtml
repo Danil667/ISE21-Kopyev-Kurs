@@ -1,4 +1,4 @@
-﻿@model ZooCalculationWebClient.Models.RegistrationModel
+﻿@model Web.Models.RegistrationModel
 
 @{
     ViewData["Title"] = "Регистрация";
@@ -15,19 +15,9 @@
                 <input asp-for="Login" class="form-control" />
                 <span asp-validation-for="Login" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label">Пароль</label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ClientFIO" class="control-label">ФИО</label>
-                <input asp-for="ClientFIO" class="form-control" />
-                <span asp-validation-for="ClientFIO" class="text-danger"></span>
-            </div>
             @Html.ValidationSummary(true, "", new { @style = "color: red" })
             <div class="form-group">
-                <input type="submit" value="Зарегистрироваться" class="btn btn-primary" />
+                <input type="submit" value="Зарегистрировать" class="btn btn-primary" />
             </div>
         </form>
     </div>

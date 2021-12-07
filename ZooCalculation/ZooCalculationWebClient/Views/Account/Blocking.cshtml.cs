@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Web.Views.Client
+namespace Web.Views.Admin
 {
-    public class LoginModel : PageModel
+    public class BlockingModel : PageModel
     {
         public void OnGet()
         {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZooCalculationWebClient.Models
+namespace Web.Models
 {
 	public class AdminModel
 	{

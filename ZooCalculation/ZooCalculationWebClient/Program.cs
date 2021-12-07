@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using ZooCalculationBussinesLogic.ViewModels;
+using Infrastructure.ViewModels;
 
-namespace ZooCalculationWebClient
+namespace Web
 {
 	public class Program
 	{

@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace ZooCalculationBussinesLogic.ViewModels
+namespace Infrastructure.ViewModels
 {
 	[DataContract]
 	public class ClientViewModel
@@ -23,5 +23,6 @@ namespace ZooCalculationBussinesLogic.ViewModels
 		[DataMember]
 		[DisplayName("Блокировка")]
 		public bool BlockStatus { get; set; }
+		public string Role { get; set; }
 	}
 }

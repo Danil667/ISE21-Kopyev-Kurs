@@ -2,17 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ZooCalculationBussinesLogic.BusinessLogic;
-using ZooCalculationBussinesLogic.Interfaces;
-using ZooCalculationDatabaseImplements.Implements;
+using Data.Implements;
+using Data.Interfaces;
 
-namespace ZooCalculationWebClient
+namespace Web
 {
 	public class Startup
 	{
@@ -27,11 +27,12 @@ namespace ZooCalculationWebClient
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllersWithViews();
-			services.AddTransient<IClientLogic, ClientLogic>();
-			services.AddTransient<IOrderLogic, OrderLogic>();
-			services.AddTransient<IExcursionLogic, ExcursionLogic>();
-			services.AddTransient<IRouteLogic, RouteLogic>();
-			services.AddTransient<ReportLogic>();
+			services.AddTransient<IUserLogic, UserLogic>();
+			services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+				.AddCookie(options => //CookieAuthenticationOptions
+				{
+					options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Client/Login");
+				});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +53,8 @@ namespace ZooCalculationWebClient
 
 			app.UseRouting();
 
+
+			app.UseAuthentication();
 			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>

@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ZooCalculationDatabaseImplements;
+using Data;
 
-namespace ZooCalculationDatabaseImplements.Migrations
+namespace Data.Migrations
 {
-    [DbContext(typeof(ZooCalculationDatabase))]
+    [DbContext(typeof(Database))]
     [Migration("20200910171048_InitialCreate")]
     partial class InitialCreate
     {
@@ -21,7 +21,7 @@ namespace ZooCalculationDatabaseImplements.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ZooCalculationDatabaseImplements.Models.Client", b =>
+            modelBuilder.Entity("Data.Models.Client", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,7 +48,7 @@ namespace ZooCalculationDatabaseImplements.Migrations
                     b.ToTable("Clients");
                 });
 
-            modelBuilder.Entity("ZooCalculationDatabaseImplements.Models.Excursion", b =>
+            modelBuilder.Entity("Data.Models.Excursion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -80,7 +80,7 @@ namespace ZooCalculationDatabaseImplements.Migrations
                     b.ToTable("Excursions");
                 });
 
-            modelBuilder.Entity("ZooCalculationDatabaseImplements.Models.Order", b =>
+            modelBuilder.Entity("Data.Models.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -108,7 +108,7 @@ namespace ZooCalculationDatabaseImplements.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("ZooCalculationDatabaseImplements.Models.Route", b =>
+            modelBuilder.Entity("Data.Models.Route", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -130,7 +130,7 @@ namespace ZooCalculationDatabaseImplements.Migrations
                     b.ToTable("Routes");
                 });
 
-            modelBuilder.Entity("ZooCalculationDatabaseImplements.Models.RouteForExcursion", b =>
+            modelBuilder.Entity("Data.Models.RouteForExcursion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -153,33 +153,33 @@ namespace ZooCalculationDatabaseImplements.Migrations
                     b.ToTable("RouteForExcursions");
                 });
 
-            modelBuilder.Entity("ZooCalculationDatabaseImplements.Models.Excursion", b =>
+            modelBuilder.Entity("Data.Models.Excursion", b =>
                 {
-                    b.HasOne("ZooCalculationDatabaseImplements.Models.Client", "Client")
+                    b.HasOne("Data.Models.Client", "Client")
                         .WithMany("Excursions")
                         .HasForeignKey("ClientId");
                 });
 
-            modelBuilder.Entity("ZooCalculationDatabaseImplements.Models.Order", b =>
+            modelBuilder.Entity("Data.Models.Order", b =>
                 {
-                    b.HasOne("ZooCalculationDatabaseImplements.Models.Client", "Clients")
+                    b.HasOne("Data.Models.Client", "Clients")
                         .WithMany("Orders")
                         .HasForeignKey("ClientId");
 
-                    b.HasOne("ZooCalculationDatabaseImplements.Models.Excursion", "Excursions")
+                    b.HasOne("Data.Models.Excursion", "Excursions")
                         .WithMany("Orders")
                         .HasForeignKey("ExcursionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ZooCalculationDatabaseImplements.Models.RouteForExcursion", b =>
+            modelBuilder.Entity("Data.Models.RouteForExcursion", b =>
                 {
-                    b.HasOne("ZooCalculationDatabaseImplements.Models.Excursion", "Excursions")
+                    b.HasOne("Data.Models.Excursion", "Excursions")
                         .WithMany("RouteForExcursions")
                         .HasForeignKey("ExcursionId");
 
-                    b.HasOne("ZooCalculationDatabaseImplements.Models.Route", "Routes")
+                    b.HasOne("Data.Models.Route", "Routes")
                         .WithMany("RouteForExcursion")
                         .HasForeignKey("ExcursionId");
                 });

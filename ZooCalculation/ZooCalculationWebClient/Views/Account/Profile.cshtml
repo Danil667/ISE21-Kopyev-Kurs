@@ -1,0 +1,35 @@
+﻿@model Web.Models.ClientModel
+
+@{ ViewData["Title"] = "Личный кабинет"; }
+<div class="text-center text-info">
+    <h1>@ViewData["Title"]</h1>
+</div>
+@if (ViewBag.error != null)
+{
+    <div class="alert-danger"> @ViewBag.error</div>
+}
+<div class="validation" asp-validation-summary="ModelOnly"></div>
+<table class="table table-borderless">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Имя</th>
+            <th scope="col">Логин</th>
+            <th scope="col">Смена пароля</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><label>@Model.ClientFIO</label></td>
+            <td><label>@Model.Login</label></td>
+            <td>
+                <form action="Change" method="post">
+                    <label>Старый пароль</label>
+                    <input asp-for="OldPassword" type="password" placeholder="Старый пароль" />
+                    <label>Новый пароль</label>
+                    <input asp-for="Password" type="password" placeholder="Новый пароль" />
+                    <input class="btn-success" type="submit" value="Изменить" />
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>

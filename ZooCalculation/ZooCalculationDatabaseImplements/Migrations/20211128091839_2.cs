@@ -3,53 +3,37 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class _2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Clients",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ClientFIO = table.Column<string>(nullable: false),
-                    Login = table.Column<string>(nullable: false),
-                    Password = table.Column<string>(nullable: false),
-                    BlockStatus = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Clients", x => x.Id);
-                });
+            migrationBuilder.DropTable(
+                name: "Orders");
 
-            migrationBuilder.CreateTable(
-                name: "Routes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RouteName = table.Column<string>(nullable: false),
-                    StartRoute = table.Column<DateTime>(nullable: false),
-                    Cost = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Routes", x => x.Id);
-                });
+            migrationBuilder.DropTable(
+                name: "RouteForExcursions");
 
+            migrationBuilder.DropTable(
+                name: "Excursions");
+
+            migrationBuilder.DropTable(
+                name: "Routes");
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
             migrationBuilder.CreateTable(
                 name: "Excursions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ClientId = table.Column<int>(nullable: true),
-                    ExcursionCreate = table.Column<DateTime>(nullable: false),
-                    Status = table.Column<int>(nullable: false),
-                    Name_Excursion = table.Column<string>(nullable: true),
-                    PaidSum = table.Column<int>(nullable: false),
-                    Final_Cost = table.Column<decimal>(nullable: false)
+                    ClientId = table.Column<int>(type: "int", nullable: true),
+                    ExcursionCreate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Final_Cost = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Name_Excursion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PaidSum = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -63,15 +47,30 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Routes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Cost = table.Column<int>(type: "int", nullable: false),
+                    RouteName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StartRoute = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Routes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ClientId = table.Column<int>(nullable: true),
-                    ExcursionId = table.Column<int>(nullable: false),
-                    Sum = table.Column<decimal>(nullable: false),
-                    DateCreate = table.Column<DateTime>(nullable: false)
+                    ClientId = table.Column<int>(type: "int", nullable: true),
+                    DateCreate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ExcursionId = table.Column<int>(type: "int", nullable: false),
+                    Sum = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -94,11 +93,11 @@ namespace Data.Migrations
                 name: "RouteForExcursions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ExcursionId = table.Column<int>(nullable: true),
-                    RouteId = table.Column<int>(nullable: false),
-                    Count = table.Column<int>(nullable: false)
+                    Count = table.Column<int>(type: "int", nullable: false),
+                    ExcursionId = table.Column<int>(type: "int", nullable: true),
+                    RouteId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -136,24 +135,6 @@ namespace Data.Migrations
                 name: "IX_RouteForExcursions_ExcursionId",
                 table: "RouteForExcursions",
                 column: "ExcursionId");
-        }
-
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "Orders");
-
-            migrationBuilder.DropTable(
-                name: "RouteForExcursions");
-
-            migrationBuilder.DropTable(
-                name: "Excursions");
-
-            migrationBuilder.DropTable(
-                name: "Routes");
-
-            migrationBuilder.DropTable(
-                name: "Clients");
         }
     }
 }

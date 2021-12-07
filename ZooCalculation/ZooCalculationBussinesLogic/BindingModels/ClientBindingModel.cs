@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace ZooCalculationBussinesLogic.BindingModels
+namespace Infrastructure.BindingModels
 {
 	[DataContract]
 	public class ClientBindingModel
@@ -18,5 +18,6 @@ namespace ZooCalculationBussinesLogic.BindingModels
 		public string Password { get; set; }
 		[DataMember]
 		public bool BlockStatus { get; set; }
+		public string Role { get; set; }
 	}
 }

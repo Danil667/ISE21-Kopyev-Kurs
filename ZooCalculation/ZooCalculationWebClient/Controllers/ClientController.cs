@@ -1,45 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using ZooCalculationBussinesLogic.BindingModels;
-using ZooCalculationBussinesLogic.Interfaces;
-using ZooCalculationWebClient.Models;
+using Data.Interfaces;
+using Data.Models;
+using Web.Models;
+using Data.Implements;
 
-namespace ZooCalculationWebClient.Controllers
+namespace Web.Controllers
 {
     public class ClientController : Controller
     {
-		private readonly IClientLogic client;
-		private readonly int passwordMinLength = 6;
-		private readonly int passwordMaxLength = 20;
+		private readonly IUserLogic user;
 		private readonly int loginMinLength = 1;
 		private readonly int loginMaxLength = 50;
-		public ClientController(IClientLogic client)
+		public ClientController(IUserLogic user)
 		{
-			this.client = client;
+			this.user = user;
 		}
-		public ActionResult Profile()
-		{
-			ViewBag.User = Program.Client;
-			return View();
-		}
+
 		public IActionResult Login()
 		{
 			return View();
 		}
 
 		[HttpPost]
-		public ActionResult Login(SignIn user)
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Login(SignIn user)
 		{
-			var clientView = client.Read(new ClientBindingModel
-			{
-				Login = user.Login,
-				Password = user.Password
-			}).FirstOrDefault();
-			if (clientView == null)
+			var clientView = this.user.Users.FirstOrDefault(x => x.Login == user.Login);
+			if (clientView == null || !string.IsNullOrEmpty(clientView.Password) && clientView.Password != user.Password)
 			{
 				ModelState.AddModelError("", "Вы ввели неверный пароль, либо пользователь не найден");
 				return View(user);
@@ -49,12 +44,40 @@ namespace ZooCalculationWebClient.Controllers
 				ModelState.AddModelError("", "Пользователь заблокирован");
 				return View(user);
 			}
-			Program.Client = clientView;
-			return RedirectToAction("Index", "Home");
+			var usr = new User();
+			usr.Login = clientView.Login;
+			usr.BlockStatus = clientView.BlockStatus;
+			if(usr.Login == "Admin")
+				usr.Role = "admin";
+			else
+				usr.Role = "user";
+			if (string.IsNullOrEmpty(clientView.Password))
+			{
+				clientView.Password = user.Password;
+				this.user.AddUser(clientView);
+			}
+				
+			await Authenticate(usr);
+			return RedirectToAction("Profile", "Account");
 		}
+
+		private async Task Authenticate(User user)
+		{
+			// создаем один claim
+			var claims = new List<Claim>
+			{
+				new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login),
+				new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role)
+			};
+			// создаем объект ClaimsIdentity
+			ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+			// установка аутентификационных куки
+			await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+		}
+
 		public IActionResult Logout()
 		{
-			Program.Client = null;
+			HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 			return RedirectToAction("Index", "Home");
 		}
 		public IActionResult Registration()
@@ -62,7 +85,7 @@ namespace ZooCalculationWebClient.Controllers
 			return View();
 		}
 		[HttpPost]
-		public ViewResult Registration(RegistrationModel user)
+		public ActionResult Registration(RegistrationModel user)
 		{
 			if (String.IsNullOrEmpty(user.Login))
 			{
@@ -75,45 +98,21 @@ namespace ZooCalculationWebClient.Controllers
 				ModelState.AddModelError("", $"Длина логина должна быть от {loginMinLength} до {loginMaxLength} символов");
 				return View(user);
 			}
-			var existClient = client.Read(new ClientBindingModel
-			{
-				Login = user.Login
-			}).FirstOrDefault();
+			var existClient = this.user.Users.FirstOrDefault(x => x.Login == user.Login);
 			if (existClient != null)
 			{
 				ModelState.AddModelError("", "Данный логин уже занят");
 				return View(user);
 			}
-			if (!Regex.IsMatch(user.Login, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
+			
+			this.user.AddUser(new User
 			{
-				ModelState.AddModelError("", "логин введен некорректно");
-				return View(user);
-			}
-			if (user.Password.Length > passwordMaxLength ||
-			user.Password.Length < passwordMinLength)
-			{
-				ModelState.AddModelError("", $"Длина пароля должна быть от {passwordMinLength} до {passwordMaxLength} символов");
-				return View(user);
-			}
-			if (String.IsNullOrEmpty(user.ClientFIO))
-			{
-				ModelState.AddModelError("", "Введите ФИО");
-				return View(user);
-			}
-			if (String.IsNullOrEmpty(user.Password))
-			{
-				ModelState.AddModelError("", "Введите пароль");
-				return View(user);
-			}
-			client.CreateOrUpdate(new ClientBindingModel
-			{
-				ClientFIO = user.ClientFIO,
 				Login = user.Login,
-				Password = user.Password,
-				BlockStatus = false
+				BlockStatus = false,
+				Role = "user"
 			});
-			ModelState.AddModelError("", "Вы успешно зарегистрированы");
-			return View("Registration", user);
+			ModelState.AddModelError("", "Пользователь успешно зарегистрирован");
+			return RedirectToAction("Blocking","Account", user);
 		}
 	}
 }

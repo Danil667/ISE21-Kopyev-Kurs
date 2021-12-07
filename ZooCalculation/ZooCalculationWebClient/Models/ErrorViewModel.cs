@@ -1,6 +1,6 @@
 using System;
 
-namespace ZooCalculationWebClient.Models
+namespace Web.Models
 {
     public class ErrorViewModel
     {

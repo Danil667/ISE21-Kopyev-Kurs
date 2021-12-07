@@ -1,0 +1,43 @@
+﻿@model List<Web.Models.ClientModel>
+@{
+    ViewData["Title"] = "Блокировка";
+}
+<div class="text-center text-info">
+    <h1>Блокировка</h1>
+</div>
+
+<a class="btn btn-primary" asp-controller="Client" asp-action="Registration">Добавить пользователя</a>
+@using (Html.BeginForm())
+{
+    <table class="table">
+        <tr>
+            <td>Логин</td>
+            <td>Статус</td>
+            <td>Заблокировать/разблокировать</td>
+            <th>Смена пароля</th>
+        </tr>
+        @foreach (var client in Model)
+        {
+            <tr>
+                <td>@client.Login</td>
+                <td>
+                    @if (client.BlockStatus)
+                    {
+                        <span>Заблокирован</span>
+                    }
+                    else
+                    {
+                        <span>Активен</span>
+                    }
+
+                </td>
+                <td>
+                    <a class="btn btn-info btn-sm" href="/Account/Block/?userName=@client.Login">Заблокировать/разблокировать</a>
+                </td>
+                <td>
+                    <a class="btn btn-info btn-sm" href="/Account/ChangePassword/?userName=@client.Login">Сменить пароль</a>
+                </td>
+            </tr>
+        }
+    </table>
+}
