@@ -43,6 +43,7 @@ namespace Web.Controllers
 					Login = user.Login,
 					Password = user.Password
 				});
+				SaveData.Save(this.user.Users.ToList());
 				return RedirectToAction("Blocking");
 			}
 			return RedirectToAction("ChangePassword", "Account", userLogin);
@@ -63,6 +64,7 @@ namespace Web.Controllers
 			var user = this.user.Users.FirstOrDefault(x => x.Login == userName);
 			user.BlockStatus = !user.BlockStatus;
 			this.user.AddUser(user);
+			SaveData.Save(this.user.Users.ToList());
 			return RedirectToAction("Blocking");
 		}
 		[Authorize(Roles = "admin")]
@@ -94,6 +96,7 @@ namespace Web.Controllers
 					Login = user.Login,
 					Password = user.Password
 				});
+				SaveData.Save(this.user.Users.ToList());
 			}
 
 
