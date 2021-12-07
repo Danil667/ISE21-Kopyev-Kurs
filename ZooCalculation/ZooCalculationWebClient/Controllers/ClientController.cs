@@ -111,6 +111,7 @@ namespace Web.Controllers
 				BlockStatus = false,
 				Role = "user"
 			});
+			SaveData.Save(this.user.Users.ToList());
 			ModelState.AddModelError("", "Пользователь успешно зарегистрирован");
 			return RedirectToAction("Blocking","Account", user);
 		}
