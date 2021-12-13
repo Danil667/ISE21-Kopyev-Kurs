@@ -7,5 +7,6 @@
 		public string Password { get; set; }
 		public bool BlockStatus { get; set; }
 		public string Role { get; set; }
+		public bool LimitPassword { get; set; }
 	}
 }

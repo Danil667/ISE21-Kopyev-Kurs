@@ -8,18 +8,16 @@
 {
     <div class="alert-danger"> @ViewBag.error</div>
 }
-<div class="validation" asp-validation-summary="ModelOnly"></div>
+<div class="alert alert-warning" asp-validation-summary="ModelOnly"></div>
 <table class="table table-borderless">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">Имя</th>
             <th scope="col">Логин</th>
             <th scope="col">Смена пароля</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td><label>@Model.ClientFIO</label></td>
             <td><label>@Model.Login</label></td>
             <td>
                 <form action="Change" method="post">

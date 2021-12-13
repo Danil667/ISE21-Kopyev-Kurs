@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ZooCalculationBussinesLogic\Infrastructure.csproj" />
     <ProjectReference Include="..\ZooCalculationDatabaseImplements\Data.csproj" />
   </ItemGroup>
 

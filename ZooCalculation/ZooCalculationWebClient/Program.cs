@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Infrastructure.ViewModels;
 
 namespace Web
 {
 	public class Program
 	{
+		public static string passPhrase = string.Empty;
 		public static void Main(string[] args)
 		{
 			CreateHostBuilder(args).Build().Run();

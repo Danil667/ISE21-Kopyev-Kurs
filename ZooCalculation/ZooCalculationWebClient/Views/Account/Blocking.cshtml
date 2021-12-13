@@ -5,13 +5,15 @@
 <div class="text-center text-info">
     <h1>Блокировка</h1>
 </div>
-
+<div class="validation" asp-validation-summary="ModelOnly"></div>
 <a class="btn btn-primary" asp-controller="Client" asp-action="Registration">Добавить пользователя</a>
 @using (Html.BeginForm())
 {
     <table class="table">
         <tr>
             <td>Логин</td>
+            <td>Ограничение пароля</td>
+            <td>Установить/снять</td>
             <td>Статус</td>
             <td>Заблокировать/разблокировать</td>
             <th>Смена пароля</th>
@@ -20,6 +22,19 @@
         {
             <tr>
                 <td>@client.Login</td>
+                <td>
+                    @if (client.LimitPassword)
+                    {
+                        <span>Активно</span>
+                    }
+                    else
+                    {
+                        <span>Не активно</span>
+                    }
+                </td>
+                <td>
+                    <a class="btn btn-info btn-sm" href="/Account/Limit/?userName=@client.Login">Установить/снять</a>
+                </td>
                 <td>
                     @if (client.BlockStatus)
                     {

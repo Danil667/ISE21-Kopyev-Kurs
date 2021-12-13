@@ -4,7 +4,7 @@
 
 <div class="text-center">
     <h1 class="display-4">Добро пожаловать</h1>
-    @if (!User.Identity.IsAuthenticated)
+    @if (!User.Identity.IsAuthenticated && !string.IsNullOrEmpty(Program.passPhrase))
     {
         <div class="card" style="width: 15rem; position: relative;">
             <div class="card-body">
@@ -13,6 +13,16 @@
                 <a class="btn btn-primary" asp-area="" asp-controller="Client" asp-action="Login">Вход</a>
             </div>
         </div>
+    }
+    else
+    {
+        <form asp-action="Login">
+            <div class="form-group">
+                <label for="Password">Ключ</label>
+                <input type="password" name="pass" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Вход</button>
+        </form>
     }
 
 </div>

@@ -14,6 +14,6 @@ namespace Data
 			}
 			base.OnConfiguring(optionsBuilder);
 		}
-		public virtual DbSet<Models.Data> Datas { set; get; }
+		public virtual DbSet<DataDB> Datas { set; get; }
 	}
 }
